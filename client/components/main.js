@@ -1,16 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Head from './head'
+import Header from './header'
 
-const Home = () => {
+const Main = () => {
   return (
     <div>
-      <Head title="Hello" />
+      <Header />
       <div className="flex items-center justify-center h-screen">
         <div className="bg-indigo-800 text-white font-bold rounded-lg border shadow-lg p-10">
-          <p>This is Home</p>
+          <p>This is Main</p>
           <p>
-            <Link to="/dashboard">Go To Dashboard</Link>
+            <Link to="/">Go To Root</Link>
           </p>
         </div>
       </div>
@@ -18,6 +18,6 @@ const Home = () => {
   )
 }
 
-Home.propTypes = {}
+Main.propTypes = {}
 
-export default Home
+export default React.memo(Main)
