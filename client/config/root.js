@@ -11,6 +11,7 @@ import store, { history } from '../redux'
 import Home from '../components/home'
 import Dashboard from '../components/dashboard'
 import Main from '../components/main'
+import Profile from '../components/profile'
 import NotFound from '../components/404'
 
 import Startup from './startup'
@@ -86,7 +87,8 @@ const RootComponent = (props) => {
           <Switch>
             <Route exact path="/" component={() => <Home />} />
             <Route exact path="/dashboard" component={() => <Dashboard />} />
-            <Route exact path="/dashboard/*" component={() => <Main />} />
+            <Route exact path="/dashboard/main" component={() => <Main />} />
+            <Route exact path="/dashboard/profile/:username" component={() => <Profile />} />
             <PrivateRouteConnected exact path="/hidden-route" component={() => <Home />} />
             <Route component={() => <NotFound />} />
           </Switch>
