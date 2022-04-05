@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { SET_TABLE } from '../redux/reducers/table'
+import { setScore, SET_TABLE } from '../redux/reducers/table'
 
 const Table = (props) => {
   const dispatch = useDispatch()
@@ -26,8 +26,9 @@ const Table = (props) => {
   return (
     <button
       type="button"
-      className={`p-10 m-0.5 bg-${props.color}-200 border-2 ${props.status} rounded-lg border-lime-100`}
+      className={`p-10 m-0.5 bg-${props.color}-200 border-2 disabled rounded-lg border-lime-100`}
       onClick={() => {
+        dispatch(setScore())
         dispatch({
           type: SET_TABLE,
           payload: updatedTableArray,

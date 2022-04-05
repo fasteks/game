@@ -1,12 +1,14 @@
 const SET_ROWS = '@game/SET_ROWS'
 const SET_COLS = '@game/SET_COLS'
+const SET_SCORE = '@game/SET_SCORE'
 export const SET_TABLE = '@game/SET_TABLE'
 
 const initialState = {
   tableArray: [],
   tableNumbers: [],
-  rows: null,
-  cols: null
+  rows: '',
+  cols: '',
+  score: 0
 }
 
 export default (state = initialState, action = {}) => {
@@ -28,6 +30,12 @@ export default (state = initialState, action = {}) => {
         ...state,
         tableArray: action.payload,
         tableNumbers: action.numbers
+      }
+    }
+    case SET_SCORE: {
+      return {
+        ...state,
+        score: action.payload
       }
     }
     default:
@@ -52,6 +60,19 @@ export function setArray(rows, cols) {
   const array = new Array(length).fill().map((it, index) => {
     return { id: index, color: 'yellow', isClicked: 'no' }
   })
-  const arrayNumbers = array.map(it => +it.id)
+  const arrayNumbers = array.map((it) => +it.id)
   return { type: SET_TABLE, payload: array, numbers: arrayNumbers }
+}
+
+export function setScore() {
+  return (dispatch, getState) => {
+    const { tableArray } = getState().table
+    const scoreCount = tableArray.reduce((acc, rec) => {
+      if (rec.isClicked === 'yes') {
+        return acc + 10
+      }
+      return acc
+    }, 0)
+    return dispatch({ type: SET_SCORE, payload: scoreCount })
+  }
 }

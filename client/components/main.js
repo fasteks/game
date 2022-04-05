@@ -14,7 +14,7 @@ const Main = () => {
     <div>
       <Head title="Main" />
       <div className="flex items-center justify-center min-h-screen">
-        <form className="flex flex-col items-center justify-between p-7 h-52 bg-indigo-800 text-white font-bold rounded-lg border shadow-lg">
+        <div className="flex flex-col items-center justify-between p-7 h-52 bg-indigo-800 text-white font-bold rounded-lg border shadow-lg">
           <p className="mb-5">Welcome!</p>
           <label htmlFor="count-cols">
             Enter count of cols:
@@ -44,32 +44,16 @@ const Main = () => {
               required
             />
           </label>
-          <button
-            className="mt-5"
-            type="button"
+          <Link
+            to="/game"
+            className="mt-5 py-2 px-6 bg-green-500 rounded-3xl"
             onClick={() => {
               dispatch(setArray(rows, cols))
             }}
           >
-            <Link to="/game" className="mt-5 py-2 px-6 bg-green-500 rounded-3xl">
-              Play!
-            </Link>
-          </button>
-          {/* <button
-            className="mt-5"
-            type="button"
-            onClick={() => {
-              dispatch(setArray(rows, cols))
-            }}
-          >
-            {(rows && cols && (
-              <Link to="/game" className="mt-5 py-2 px-6 bg-green-500 rounded-3xl">
-                Play!
-              </Link>
-            )) ||
-              'Play!'}
-          </button> */}
-        </form>
+            Play!
+          </Link>
+        </div>
       </div>
     </div>
   )
