@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
+// import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -10,14 +11,15 @@ import { SET_TABLE } from '../redux/reducers/table'
 const Game = () => {
   const dispatch = useDispatch()
   const { tableArray, tableNumbers } = useSelector((s) => s.table)
+  const tableArrayRef = useRef()
+  tableArrayRef.current = tableArray
   const getRandomNumber = (array) => array[Math.floor(Math.random() * array.length)]
-  //              [1, 2, 3, 4, 5, 6, 7, 8, 9]
   const newNmb = +getRandomNumber(tableNumbers)
-  //              5
   const newArray =
     tableNumbers.length > 0 ? tableNumbers.filter((it) => +it !== newNmb) : tableNumbers
   const blue = 'blue'
   const red = 'red'
+
   const colorizeTable = (nmb) => {
     const coloredTableArray = tableArray.map((it) => {
       if (it.id === nmb) {
@@ -29,7 +31,7 @@ const Game = () => {
   }
 
   const disableButton = (nmb) => {
-    const disableArray = tableArray.map((it) => {
+    const disableArray = tableArrayRef.current.map((it) => {
       if (nmb === it.id && it.isClicked === 'no') {
         return { ...it, color: red }
       }
@@ -65,9 +67,7 @@ const Game = () => {
         <div className="w-2/5 border-2 border-indigo-800">
           <div className="flex flex-wrap items-center justify-center">
             {tableArray.map((it) => {
-                return (
-                  <TableCell key={it.id} cell={it.id} color={it.color} />
-                )
+              return <TableCell key={it.id} cell={it.id} color={it.color} />
             })}
           </div>
         </div>
