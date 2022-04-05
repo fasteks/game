@@ -8,11 +8,11 @@ import { bindActionCreators } from 'redux'
 
 import store, { history } from '../redux'
 
-import Home from '../components/home'
-import Initial from '../components/initial'
-import NotFound from '../components/404'
-
 import Startup from './startup'
+
+import Main from '../components/main'
+import Game from '../components/game'
+import NotFound from '../components/404'
 
 const OnlyAnonymousRoute = ({ component: Component, ...rest }) => {
   const func = (props) =>
@@ -83,10 +83,9 @@ const RootComponent = (props) => {
       <ConnectedRouter history={history} location={props.location} context={props.context}>
         <StartupConnected>
           <Switch>
-            <Route exact path="/" component={() => <Initial />} />
-            <Route exact path="/dashboard" component={() => <Home />} />
-            <Route exact path="/dashboard/*" component={() => <Home />} />
-            <PrivateRouteConnected exact path="/hidden-route" component={() => <Home />} />
+            <Route exact path="/" component={() => <Main />} />
+            <Route exact path="/game" component={() => <Game />} />
+            <PrivateRouteConnected exact path="/hidden-route" component={() => <Main />} />
             <Route component={() => <NotFound />} />
           </Switch>
         </StartupConnected>

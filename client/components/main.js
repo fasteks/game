@@ -1,15 +1,75 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+
+import Head from './head'
+
+import { setCols, setRows, setArray } from '../redux/reducers/table'
 
 const Main = () => {
+  const dispatch = useDispatch()
+  const { rows, cols } = useSelector((s) => s.table)
+
   return (
     <div>
-      <div id="title">Main</div>
-      <div>
-        <Link to="/dashboard/profile/71cfff71-34e1-46eb-95ad-29637d913771">Go To Profile</Link>
-      </div>
-      <div>
-        <Link to="/dashboard">Go To Root</Link>
+      <Head title="Main" />
+      <div className="flex items-center justify-center min-h-screen">
+        <form className="flex flex-col items-center justify-between p-7 h-52 bg-indigo-800 text-white font-bold rounded-lg border shadow-lg">
+          <p className="mb-5">Welcome!</p>
+          <label htmlFor="count-cols">
+            Enter count of cols:
+            <input
+              type="text"
+              id="count-cols"
+              className="ml-4 w-24 text-black"
+              value={cols}
+              onChange={(e) => {
+                dispatch(setCols(e.target.value))
+              }}
+              placeholder="digit 2-6"
+              required
+            />
+          </label>
+          <label htmlFor="count-rows" className="mt-2">
+            Enter count of rows:
+            <input
+              type="text"
+              id="count-rows"
+              className="ml-2 w-24 text-black"
+              value={rows}
+              onChange={(e) => {
+                dispatch(setRows(e.target.value))
+              }}
+              placeholder="digit 2-6"
+              required
+            />
+          </label>
+          <button
+            className="mt-5"
+            type="button"
+            onClick={() => {
+              dispatch(setArray(rows, cols))
+            }}
+          >
+            <Link to="/game" className="mt-5 py-2 px-6 bg-green-500 rounded-3xl">
+              Play!
+            </Link>
+          </button>
+          {/* <button
+            className="mt-5"
+            type="button"
+            onClick={() => {
+              dispatch(setArray(rows, cols))
+            }}
+          >
+            {(rows && cols && (
+              <Link to="/game" className="mt-5 py-2 px-6 bg-green-500 rounded-3xl">
+                Play!
+              </Link>
+            )) ||
+              'Play!'}
+          </button> */}
+        </form>
       </div>
     </div>
   )
