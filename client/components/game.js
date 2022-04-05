@@ -12,8 +12,6 @@ const Game = () => {
   const { tableArray, tableNumbers, score } = useSelector((s) => s.table)
   const tableArrayRef = useRef()
   tableArrayRef.current = tableArray
-  const tableNumbersRef = useRef()
-  tableNumbersRef.current = tableNumbers
   const getRandomNumber = (array) => array[Math.floor(Math.random() * array.length)]
   const newNmb = +getRandomNumber(tableNumbers)
   const newArray =
@@ -22,7 +20,7 @@ const Game = () => {
   const red = 'red'
 
   const colorizeTable = (nmb) => {
-    const coloredTableArray = tableArray.map((it) => {
+    const coloredTableArray = tableArrayRef.current.map((it) => {
       if (it.id === nmb) {
         return { ...it, color: blue }
       }
