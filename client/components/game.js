@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import Head from './head'
-import TableCell from './table'
+import Cell from './cell'
 
 import { setScore, SET_TABLE } from '../redux/reducers/table'
 
@@ -67,7 +67,7 @@ const Game = () => {
         <div className="w-2/5 border-2 border-indigo-800">
           <div className="flex flex-wrap items-center justify-center">
             {tableArray.map((it) => {
-              return <TableCell key={it.id} cell={it.id} color={it.color} />
+              return <Cell key={it.id} cell={it.id} color={it.color} />
             })}
           </div>
         </div>

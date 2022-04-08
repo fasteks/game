@@ -47,8 +47,12 @@ const Main = () => {
           <Link
             to="/game"
             className="mt-5 py-2 px-6 bg-green-500 rounded-3xl"
-            onClick={() => {
-              dispatch(setArray(rows, cols))
+            onClick={(e) => {
+              if (rows && cols !== '') {
+                dispatch(setArray(rows, cols))
+              } else {
+                e.preventDefault()
+              }
             }}
           >
             Play!
