@@ -26,7 +26,7 @@ const Table = (props) => {
   return (
     <button
       type="button"
-      className={`p-10 m-0.5 bg-${props.color}-200 border-2 disabled rounded-lg border-lime-100`}
+      className={`p-10 m-0.5 ${props.styl} border-2 disabled rounded-lg border-lime-100`}
       onClick={() => {
         dispatch(setScore())
         dispatch({
