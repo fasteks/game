@@ -3,25 +3,28 @@ import { useDispatch, useSelector } from 'react-redux'
 
 // import classnames from 'classnames'
 
-import { setScore, SET_GREEN } from '../redux/reducers/table'
+import {
+  SET_GREEN,
+  COLOR_BLUE,
+  COLOR_GREEN,
+  COLOR_YELLOW,
+  COLOR_RED
+} from '../redux/reducers/table'
 
 const Table = (props) => {
   const dispatch = useDispatch()
   const { tableArray, tableNumbers } = useSelector((s) => s.table)
-  const yellow = 'yellow'
-  const green = 'green'
-  const blue = 'blue'
-  const red = 'red'
+
   let updateNumbers
   const updatedTableArray = tableArray.map((it) => {
-    if (it.id === props.cell && it.color === blue) {
-      return { ...it, color: green, isClicked: 'yes' }
+    if (it.id === props.cell && it.color === COLOR_BLUE && it.isClicked === 'no') {
+      return { ...it, color: COLOR_GREEN, isClicked: 'yes' }
     }
-    if (it.id === props.cell && it.color === yellow) {
+    if (it.id === props.cell && it.color === COLOR_YELLOW && it.isClicked === 'no') {
       updateNumbers = tableNumbers.filter((el) => {
         return el !== props.cell
       })
-      return { ...it, color: red }
+      return { ...it, color: COLOR_RED, isClicked: 'yes' }
     }
     return it
   })
@@ -44,7 +47,6 @@ const Table = (props) => {
           payload: updatedTableArray,
           numbers: updateNumbers || tableNumbers
         })
-        dispatch(setScore())
       }}
     />
   )

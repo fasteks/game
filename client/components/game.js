@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import Head from './head'
 import Cell from './cell'
 
-import { SET_BLUE, SET_RED } from '../redux/reducers/table'
+import { setScore, SET_BLUE, SET_RED, COLOR_RED, COLOR_BLUE } from '../redux/reducers/table'
 
 const Game = () => {
   const dispatch = useDispatch()
@@ -16,13 +16,11 @@ const Game = () => {
   const newNmb = +getRandomNumber(tableNumbers)
   const newArray =
     tableNumbers.length > 0 ? tableNumbers.filter((it) => +it !== newNmb) : tableNumbers
-  const blue = 'blue'
-  const red = 'red'
 
   const colorizeTable = (nmb) => {
     const coloredTableArray = tableArrayRef.current.map((it) => {
-      if (it.id === nmb) {
-        return { ...it, color: blue }
+      if (it.id === nmb && it.isClicked === 'no') {
+        return { ...it, color: COLOR_BLUE }
       }
       return it
     })
@@ -32,7 +30,7 @@ const Game = () => {
   const disableButton = (nmb) => {
     const disableArray = tableArrayRef.current.map((it) => {
       if (nmb === it.id && it.isClicked === 'no') {
-        return { ...it, color: red }
+        return { ...it, color: COLOR_RED }
       }
       return it
     })
@@ -41,6 +39,11 @@ const Game = () => {
 
   let timer
   let timer2
+
+  useEffect(() => {
+    dispatch(setScore())
+  }, [tableArray])
+
   useEffect(() => {
     timer = setTimeout(() => {
       dispatch({
@@ -56,7 +59,7 @@ const Game = () => {
         })
       }, 500)
       return () => clearTimeout(timer2)
-    }, 700)
+    }, 600)
     return () => clearTimeout(timer)
   }, [newArray])
 

@@ -5,6 +5,10 @@ export const SET_TABLE = '@game/SET_TABLE'
 export const SET_BLUE = '@game/SET_BLUE'
 export const SET_RED = '@game/SET_RED'
 export const SET_GREEN = '@game/SET_GREEN'
+export const COLOR_YELLOW = 'yellow'
+export const COLOR_BLUE = 'blue'
+export const COLOR_RED = 'red'
+export const COLOR_GREEN = 'green'
 
 const initialState = {
   tableArray: [],
@@ -82,7 +86,7 @@ export function setCols(nmb) {
 export function setArray(rows, cols) {
   const length = +rows * +cols
   const array = new Array(length).fill().map((it, index) => {
-    return { id: index, color: 'yellow', isClicked: 'no' }
+    return { id: index, color: COLOR_YELLOW, isClicked: 'no' }
   })
   const arrayNumbers = array.map((it) => +it.id)
   return { type: SET_TABLE, payload: array, numbers: arrayNumbers }
@@ -92,7 +96,7 @@ export function setScore() {
   return (dispatch, getState) => {
     const { tableArray } = getState().table
     const scoreCount = tableArray.reduce((acc, rec) => {
-      if (rec.isClicked === 'yes') {
+      if (rec.color === COLOR_GREEN && rec.isClicked === 'yes') {
         return acc + 10
       }
       return acc
