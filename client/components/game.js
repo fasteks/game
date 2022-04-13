@@ -9,7 +9,7 @@ import { setScore, SET_BLUE, SET_RED, COLOR_RED, COLOR_BLUE } from '../redux/red
 
 const Game = () => {
   const dispatch = useDispatch()
-  const { tableArray, tableNumbers, score } = useSelector((s) => s.table)
+  const { tableArray, tableNumbers, score, rows, cols } = useSelector((s) => s.table)
   const tableArrayRef = useRef()
   tableArrayRef.current = tableArray
   const getRandomNumber = (array) => array[Math.floor(Math.random() * array.length)]
@@ -64,23 +64,23 @@ const Game = () => {
   }, [newArray])
 
   return (
-    <div>
+    <div className="flex justify-center bg-gray-200">
       <Head title="Game" />
-      <div className="flex flex-col items-center justify-evenly h-screen">
-        <div className="w-2/5 border-2 border-indigo-800">
-          <div className="flex flex-wrap items-center justify-center">
+      <div className="h-screen flex flex-col flex-wrap items-center justify-center">
+        <div className="m-auto p-10 bg-gray-900 rounded-lg">
+          <div
+            style={{
+              width: 85 * +rows,
+              height: 85 * +cols
+            }}
+            className="flex flex-wrap justify-center"
+          >
             {tableArray.map((it) => {
-              return (
-                <Cell
-                  key={it.id}
-                  cell={it.id}
-                  color={it.color}
-                />
-              )
+              return <Cell key={it.id} cell={it.id} color={it.color} />
             })}
           </div>
         </div>
-        <div className="flex flex-col items-center p-3 bg-indigo-800 text-white font-bold rounded-lg border shadow-lg">
+        <div className="flex flex-col items-center p-3 bg-gray-900 text-white font-bold rounded-lg border shadow-lg">
           <span>Score: {score}</span>
           <Link to="/" className="mt-1">
             Back To Main

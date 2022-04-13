@@ -36,7 +36,7 @@ const Table = (props) => {
       style={{
         background: props.color
       }}
-      className="p-10 m-0.5 border-2 disabled rounded-lg border-lime-100"
+      className="w-20 h-20 m-0.5 border-2 rounded-lg border-lime-100"
       // className={classnames(`p-10 m-0.5 border-2 disabled rounded-lg border-lime-100`, {
       //   [`bg-${props.color}-200`]: 1
       // })}
