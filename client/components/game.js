@@ -57,9 +57,9 @@ const Game = () => {
           payload: disableButton(newNmb),
           numbers: newArray
         })
-      }, 500)
+      }, 450)
       return () => clearTimeout(timer2.current)
-    }, 600)
+    }, 500)
     return () => clearTimeout(timer.current)
   }, [newArray])
 
