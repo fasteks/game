@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 // import classnames from 'classnames'
 
-import { setScore, SET_TABLE } from '../redux/reducers/table'
+import { setScore, SET_GREEN } from '../redux/reducers/table'
 
 const Table = (props) => {
   const dispatch = useDispatch()
@@ -37,12 +37,14 @@ const Table = (props) => {
       //   [`bg-${props.color}-200`]: 1
       // })}
       onClick={() => {
-        dispatch(setScore())
+        // clearTimeout(props.timer)
+        // clearTimeout(props.timer2)
         dispatch({
-          type: SET_TABLE,
+          type: SET_GREEN,
           payload: updatedTableArray,
           numbers: updateNumbers || tableNumbers
         })
+        dispatch(setScore())
       }}
     />
   )

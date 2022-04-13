@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import Head from './head'
 import Cell from './cell'
 
-import { setScore, SET_TABLE } from '../redux/reducers/table'
+import { SET_BLUE, SET_RED } from '../redux/reducers/table'
 
 const Game = () => {
   const dispatch = useDispatch()
@@ -32,31 +32,31 @@ const Game = () => {
   const disableButton = (nmb) => {
     const disableArray = tableArrayRef.current.map((it) => {
       if (nmb === it.id && it.isClicked === 'no') {
-        dispatch(setScore())
         return { ...it, color: red }
       }
-      dispatch(setScore())
       return it
     })
     return disableArray
   }
 
+  let timer
+  let timer2
   useEffect(() => {
-    const timer = setTimeout(() => {
+    timer = setTimeout(() => {
       dispatch({
-        type: SET_TABLE,
+        type: SET_BLUE,
         payload: colorizeTable(newNmb),
         numbers: newArray
       })
-      const timer2 = setTimeout(() => {
+      timer2 = setTimeout(() => {
         dispatch({
-          type: SET_TABLE,
+          type: SET_RED,
           payload: disableButton(newNmb),
           numbers: newArray
         })
       }, 500)
       return () => clearTimeout(timer2)
-    }, 600)
+    }, 700)
     return () => clearTimeout(timer)
   }, [newArray])
 
@@ -67,7 +67,9 @@ const Game = () => {
         <div className="w-2/5 border-2 border-indigo-800">
           <div className="flex flex-wrap items-center justify-center">
             {tableArray.map((it) => {
-              return <Cell key={it.id} cell={it.id} color={it.color} />
+              return (
+                <Cell key={it.id} cell={it.id} color={it.color} timer={timer} timer2={timer2} />
+              )
             })}
           </div>
         </div>

@@ -2,6 +2,9 @@ const SET_ROWS = '@game/SET_ROWS'
 const SET_COLS = '@game/SET_COLS'
 const SET_SCORE = '@game/SET_SCORE'
 export const SET_TABLE = '@game/SET_TABLE'
+export const SET_BLUE = '@game/SET_BLUE'
+export const SET_RED = '@game/SET_RED'
+export const SET_GREEN = '@game/SET_GREEN'
 
 const initialState = {
   tableArray: [],
@@ -26,6 +29,27 @@ export default (state = initialState, action = {}) => {
       }
     }
     case SET_TABLE: {
+      return {
+        ...state,
+        tableArray: action.payload,
+        tableNumbers: action.numbers
+      }
+    }
+    case SET_BLUE: {
+      return {
+        ...state,
+        tableArray: action.payload,
+        tableNumbers: action.numbers
+      }
+    }
+    case SET_RED: {
+      return {
+        ...state,
+        tableArray: action.payload,
+        tableNumbers: action.numbers
+      }
+    }
+    case SET_GREEN: {
       return {
         ...state,
         tableArray: action.payload,
