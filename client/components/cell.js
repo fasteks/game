@@ -1,5 +1,8 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
+import classnames from 'classnames'
+
 import { setScore, SET_TABLE } from '../redux/reducers/table'
 
 const Table = (props) => {
@@ -26,7 +29,9 @@ const Table = (props) => {
   return (
     <button
       type="button"
-      className={`p-10 m-0.5 bg-${props.color}-200 border-2 disabled rounded-lg border-lime-100`}
+      className={classnames(`p-10 m-0.5 border-2 disabled rounded-lg border-lime-100`, {
+        [`bg-${props.color}-200`]: props.color
+      })}
       onClick={() => {
         dispatch(setScore())
         dispatch({
