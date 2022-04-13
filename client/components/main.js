@@ -11,7 +11,7 @@ const Main = () => {
   const { rows, cols } = useSelector((s) => s.table)
 
   return (
-    <div className="bg-gray-200">
+    <div>
       <Head title="Main" />
       <div className="flex items-center justify-center min-h-screen">
         <div className="flex flex-col items-center justify-between p-7 h-52 bg-gray-900 text-white font-bold rounded-lg border shadow-lg">

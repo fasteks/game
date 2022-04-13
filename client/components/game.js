@@ -64,7 +64,7 @@ const Game = () => {
   }, [newArray])
 
   return (
-    <div className="min-h-screen h-full min-w-min flex justify-center bg-gray-200">
+    <div className="min-h-screen h-full min-w-min flex justify-center">
       <Head title="Game" />
       <div className="flex flex-col flex-wrap items-center justify-center">
         <div className="m-auto p-10 bg-gray-900 rounded-lg">
