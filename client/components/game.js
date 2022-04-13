@@ -37,30 +37,30 @@ const Game = () => {
     return disableArray
   }
 
-  let timer
-  let timer2
+  const timer = useRef()
+  const timer2 = useRef()
 
   useEffect(() => {
     dispatch(setScore())
-  }, [tableArray])
+  }, [])
 
   useEffect(() => {
-    timer = setTimeout(() => {
+    timer.current = setTimeout(() => {
       dispatch({
         type: SET_BLUE,
         payload: colorizeTable(newNmb),
         numbers: newArray
       })
-      timer2 = setTimeout(() => {
+      timer2.current = setTimeout(() => {
         dispatch({
           type: SET_RED,
           payload: disableButton(newNmb),
           numbers: newArray
         })
       }, 500)
-      return () => clearTimeout(timer2)
+      return () => clearTimeout(timer2.current)
     }, 600)
-    return () => clearTimeout(timer)
+    return () => clearTimeout(timer.current)
   }, [newArray])
 
   return (
@@ -71,7 +71,11 @@ const Game = () => {
           <div className="flex flex-wrap items-center justify-center">
             {tableArray.map((it) => {
               return (
-                <Cell key={it.id} cell={it.id} color={it.color} timer={timer} timer2={timer2} />
+                <Cell
+                  key={it.id}
+                  cell={it.id}
+                  color={it.color}
+                />
               )
             })}
           </div>

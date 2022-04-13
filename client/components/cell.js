@@ -8,7 +8,8 @@ import {
   COLOR_BLUE,
   COLOR_GREEN,
   COLOR_YELLOW,
-  COLOR_RED
+  COLOR_RED,
+  setScore
 } from '../redux/reducers/table'
 
 const Table = (props) => {
@@ -40,13 +41,12 @@ const Table = (props) => {
       //   [`bg-${props.color}-200`]: 1
       // })}
       onClick={() => {
-        // clearTimeout(props.timer)
-        // clearTimeout(props.timer2)
         dispatch({
           type: SET_GREEN,
           payload: updatedTableArray,
           numbers: updateNumbers || tableNumbers
         })
+        dispatch(setScore())
       }}
     />
   )
