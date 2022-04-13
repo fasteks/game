@@ -16,12 +16,12 @@ const Main = () => {
       <div className="flex items-center justify-center min-h-screen">
         <div className="flex flex-col items-center justify-between p-7 h-52 bg-gray-900 text-white font-bold rounded-lg border shadow-lg">
           <p className="mb-5">Welcome!</p>
-          <label htmlFor="count-cols">
+          <label htmlFor="count-cols" className="w-full flex justify-between">
             Enter count of cols:
             <input
               type="text"
               id="count-cols"
-              className="ml-4 w-24 text-black"
+              className="ml-2 w-24 text-black"
               value={cols}
               onChange={(e) => {
                 dispatch(setCols(e.target.value))
@@ -30,7 +30,7 @@ const Main = () => {
               required
             />
           </label>
-          <label htmlFor="count-rows" className="mt-2">
+          <label htmlFor="count-rows" className="w-full flex justify-between">
             Enter count of rows:
             <input
               type="text"
