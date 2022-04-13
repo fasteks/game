@@ -67,10 +67,7 @@ const Game = () => {
         <div className="w-2/5 border-2 border-indigo-800">
           <div className="flex flex-wrap items-center justify-center">
             {tableArray.map((it) => {
-              return <Cell key={it.id} cell={it.id} color={it.color} styl={`bg-${it.color}-400`} />
-              // return (
-              //   <div key={it.id} cell={it.id} color={it.color} className={`p-5 bg-${it.color}-400`} />
-              // )
+              return <Cell key={it.id} cell={it.id} color={it.color} />
             })}
           </div>
         </div>
