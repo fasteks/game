@@ -64,10 +64,10 @@ const Game = () => {
   }, [newArray])
 
   return (
-    <div className="min-h-screen min-w-min flex justify-center bg-gray-300">
+    <div className="min-h-screen max-h-min min-w-min flex justify-center bg-gray-300">
       <Head title="Game" />
-      <div className="h-screen flex flex-col flex-wrap items-center justify-center">
-        <div className="m-auto p-10 bg-gray-900 rounded-lg">
+      <div className="min-w-min h-screen max-h-min w-screen flex flex-col flex-wrap items-center justify-center">
+        <div className="min-w-min max-h-min m-auto p-10 bg-gray-900 rounded-lg">
           <div
             style={{
               width: 85 * +rows,
